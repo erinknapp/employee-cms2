@@ -20,4 +20,21 @@ db.connect(err => {
     console.log(`Server running on port ${PORT}`);
   });
 });
-cmsPrompt();
+//cmsPrompt();
+
+
+// GET a single employee
+db.query('SELECT * FROM employee WHERE id = 1', (err, row) => {
+  if(err) {
+    console.log(err);
+  }
+  console.log(row);
+});
+
+// Delete an employee
+db.query('DELETE FROM employee WHERE id = ?', 1, (err, result) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(result);
+});
