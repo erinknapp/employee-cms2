@@ -19,11 +19,11 @@ VALUES
   ('Ronald', 'Firbank', 1, 1),
   ('Virginia', 'Woolf', 1, 1),
   ('Piers', 'Gaveston', 1, NULL),
-  ('Charles', 'LeRoi', 2, 1),
-  ('Katherine', 'Mansfield', 2, 1),
-  ('Dora', 'Carrington', 3, NULL),
+  ('Charles', 'LeRoi', 2, 3,
+  ('Katherine', 'Mansfield', 2, 3),
+  ('Dora', 'Carrington', 3, 7),
   ('Edward', 'Bellamy', 3, NULL),
-  ('Montague', 'Summers', 3, 1),
-  ('Octavia', 'Butler', 3, 1),
+  ('Montague', 'Summers', 3, 7),
+  ('Octavia', 'Butler', 3, 10),
   ('Unica', 'Zurn', 1, NULL);
   
