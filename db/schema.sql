@@ -14,7 +14,6 @@ CREATE TABLE role (
     department_id INTEGER
 );
 
-<<<<<<< HEAD
 CREATE TABLE employee (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
@@ -22,14 +21,3 @@ CREATE TABLE employee (
     role_id INTEGER NOT NULL,
     manager_id INTEGER NULL
 );
-=======
-
-CREATE TABLE voters (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-
->>>>>>> da90c226ad72dd52aaf8a989b7b2a85c9d6ad08f
