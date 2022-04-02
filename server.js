@@ -22,85 +22,54 @@ db.connect(err => {
     console.log(`Server running on port ${PORT}`);
   });
 });
-//cmsPrompt();
+cmsPrompt();
 
+function cmsPrompt() {
 
-// GET all employees
-app.get('/api/employee', (req, res) => {
-  const sql = `SELECT * FROM employee`;
-
-  db.query(sql, (err, rows) => {
-    if(err) {
-      res.status(500).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: 'success',
-      data: rows
-    });
+  inquirer
+  .prompt({
+      type: "list",
+      name: "task",
+      message: "Choose option: ",
+      choices: [
+          "View Employees",
+          "View Employees by Department",
+          "Add Employee",
+          "Remove Employees",
+          "Update Employee Role",
+          "Add Role",
+          "End"
+        ]
+})
+  .then(function ({ task }) {
+      switch (task) {
+          case "View Employees":
+          viewEmployee();
+          break;
+          case "View Employees by Department":
+          viewEmployeeByDepartment();
+          break;
+          case "Add Employee":
+          addEmployee();
+          break;
+          case "Remove Employees":
+          removeEmployees();
+          break;
+          case "Update Employee Role":
+          updateEmployeeRole();
+          break;
+          case "Add Role":
+          addRole();
+          break;
+          case "End":
+          connection.end();
+          break;
+      }
   });
-});
-
-// Get a single employee
-app.get('/api/employee/:id', (req, res) => {
-  const sql = `SELECT * FROM employee WHERE id=?`;
-  const params = [req.params.id];
-
-  db.query(sql, params, (err, row) => {
-    if(err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: 'success',
-      data: row
-    });
-  });
-});
+}
 
 
 
-// Delete an employee: DELETE FROM
-app.delete('/api/employee/:id', (req, res) => {
-  const sql = `DELETE FROM employee WHERE id = ?`;
-  const params = [req.params.id];
-
-  db.query(sql, params, (err, result) => {
-    if(err) {
-      res.statusMessage(400).json({ error: res.message });
-    } else {
-      res.json({
-        message: 'deleted',
-        changes: result.affectedRows,
-        id: req.params.id
-      });
-    }
-  });
-});
-
-// Create employee
-app.post('/api/employee', ({ body }, res) => {
-  const errors = inputCheck(body, 'first_name', 'last_name', 'role_id', 'manager_id');
-  if(errors) {
-    res.status(400).json({ error: errors });
-    return;
-  }
-  const sql = `INSERT INTO employee ('first_name', 'last_name', 'role_id', 'manager_id)
-      VALUES (?, ?, ?, ?)`;
-  const params = [body.first_name, body.last_name, body.role_id, body.manager_id];
-
-  db.query(sql, params, (err, result) => {
-    if(err) {
-      res.status(400).json({ error: err.message });
-      return;
-    }
-    res.json({
-      message: 'success',
-      data: body
-    });
-  });
-
-});
 
 
 
