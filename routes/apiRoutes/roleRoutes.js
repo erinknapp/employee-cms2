@@ -29,4 +29,27 @@ router.post('/role', ({ body }, res) => {
     });
   });
 
+
+  // Get single employee with role
+router.get('/employee/:id', (req, res) => {
+  const sql = `SELECT employee.*, role.name 
+               AS party_name 
+               FROM candidates 
+               LEFT JOIN parties 
+               ON candidates.party_id = parties.id 
+               WHERE candidates.id = ?`;
+  const params = [req.params.id];
+
+  db.query(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json({
+      message: 'success',
+      data: row
+    });
+  });
+});
+
 module.exports = router;
