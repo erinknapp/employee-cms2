@@ -1,7 +1,7 @@
 const express = require('express');
 const db = require('./db/connection');
 const inquirer = require('inquirer');
-const consoleTable = require('console.table');
+require('console.table');
 const inputCheck = require('./utils/inputCheck');
 
 
